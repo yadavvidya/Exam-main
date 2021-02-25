@@ -1,0 +1,91 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#25454D">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/teacher.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'staff_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'staff_home' as staff_home %}
+            <a href="{{ staff_home }}" class="nav-link {% if request.path == staff_home %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'staff_add_test' as staff_add_test %}
+            <a href="{{ staff_add_test }}" class="nav-link {% if request.path == staff_add_test %} active {% endif %}" >
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              Test
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+             {% url 'staff_question_view' as staff_question_view %}
+           <a href="{{ staff_question_view }}" class="nav-link {% if request.path == staff_question_view %} active {% endif %}" >
+
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Question
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'staff_manage_student' as staff_manage_student %}
+            <a href="{% url 'staff_manage_student' %}" class="nav-link {% if request.path == staff_manage_student %} active {% endif %} {% if request.path == edit_student %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                View All Students
+              </p>
+            </a>
+          </li>
+            <li class="nav-item">
+              {% url 'staff_view_student_marks_view' as staff_view_student_marks_view%}
+              <a href="{% url 'staff_view_student_marks_view' %}" class="nav-link {% if request.path == staff_view_student_marks_view %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Generate Result
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+             {% url 'staff_view_notice' as staff_view_notice %}
+          <a href="{% url 'staff_view_notice' %}" class="nav-link {% if request.path == staff_view_notice %} active {% endif %}">
+
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              View Notice
+              </p>
+            </a>
+          </li>
+             <li class="nav-item">
+              {% url 'staff_profile' as staff_profile %}
+            <a href="{% url 'staff_profile' %}" class="nav-link {% if request.path == staff_profile %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Edit Profile
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

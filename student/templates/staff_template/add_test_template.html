@@ -1,0 +1,56 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+<section class="content" xmlns:format="http://www.w3.org/1999/xhtml">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Test</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="staff_add_test_save" method="post">
+                  {% csrf_token %}
+                <div class="card-body">
+
+                    <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                        {% for field in form %}
+                  <div class="form-group">
+                      {{ field.errors }}
+                      {{ field.label_tag }}
+                      <div class="label"> {{ field }}</div>
+                  </div>
+                    {% endfor %}
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Add Test</button>
+                </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

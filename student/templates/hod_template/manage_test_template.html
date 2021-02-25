@@ -1,0 +1,88 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+          <div class="row">
+
+          <form method="get">
+            {% csrf_token %}
+             <table>
+                <tr>
+                    <td>
+                  {{myFilter.form}}
+                    </td>
+                    </tr>
+             </table>
+            <button class="btn btn-primary" action="/admin_manage_test" type="submit">
+              Search
+            </button>
+
+                </form>
+
+        </div>
+
+
+           <div class="row my-3">
+          <div class="col-12">
+            <div class="card">
+                <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Test Details</h3>
+              </div>
+                </div>
+
+
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                       <th>Test Name</th>
+                        <th>Academic Start Date</th>
+                      <th>Course Name</th>
+                      <th>Subject Name</th>
+                       <th>No. of Questions</th>
+                       <th>Total Marks</th>
+                        <th>Due</th>
+                        <th>Test Status</th>
+                      <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for test in test %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                       <td>{{ test.name }}</td>
+                        <td>{{test.Academic_year}}</td>
+                      <td>{{ test.course_id.course_name }}</td>
+                      <td>{{ test.subject_id.subject_name }}</td>
+                      <td>{{ test.question_number }}</td>
+                      <td>{{ test.total_marks }}</td>
+                      <td>{{ test.due }}</td>
+                        {% if test.complete == True %}
+                        <td style><i><span style="color:blue">Test Not Started </span> / <span style="color:red">Test Ended</span></i></td>
+                        {% else %}
+                        <td style="color:green">Test Started</td>
+                        {% endif %}
+                  <td><a href="/admin_edit_test/{{ test.id }}" class="btn btn-success">Edit</a></td>
+                  <td><a href="/delete_test_view/{{ test.id }}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

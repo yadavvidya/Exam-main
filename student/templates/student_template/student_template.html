@@ -1,0 +1,48 @@
+{% extends 'student_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+                <div class="col-lg-3 col-6">
+                  <div class="small-box bg-warning">
+                      <div class="inner">
+                          <h3>{{ test_count }}</h3>
+
+                          <p>Total Test</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-eye-dropper"></i>
+                      </div>
+                  </div>
+              </div>
+                 <div class="col-lg-3 col-6">
+                  <div class="small-box bg-maroon">
+                      <div class="inner">
+                          <h3>{{ notice_count }}</h3>
+
+                          <p>Total Notice</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-bell"></i>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-3 col-6">
+                  <div class="small-box bg-info">
+                      <div class="inner">
+                          <h3>{{ subject_count }}</h3>
+
+                          <p>Total Subject</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-book"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

@@ -1,0 +1,120 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+          <div class="row">
+
+          <form method="get">
+            {% csrf_token %}
+             <table>
+                <tr>
+                    <td>
+                  <label for="id_admin">Exam:</label>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Exam" title="Type in a name">
+                     <br>   <label for="id_admin">Subject:</label>
+                                <input type="text" id="subject" onkeyup="mylastname()" placeholder="Search for Subjects" title="Type in a name">
+<br>
+                    </td>
+                    </tr>
+             </table>
+            <button class="btn btn-primary" action="/admin_manage_test" type="submit">
+              Search
+            </button>
+
+                </form>
+
+        </div>
+
+           <div class="row my-3">
+          <div class="col-12">
+           <div class="card">
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Student's Exam details</h3>
+
+                </div>
+
+              </div>
+
+
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap" id="myTable">
+                  <thead>
+                    <th>Exam</th>
+                    <th>Subject</th>
+                    <th>Complete</th>
+                    <th>Academic Year</th>
+                    <th>View Marks</th>
+                  </thead>
+                  <tbody>
+                  {% for t in test %}
+                  <tr>
+                      <td>{{t.name}}</td>
+                      <td>{{t.subject_id.subject_name}}</td>
+                         {% if t.complete == True %}
+                        <td style><i><span style="color:blue">Test Not Started </span> / <span style="color:red">Test Ended</span></i></td>
+                        {% else %}
+                        <td style="color:green">Test Started</td>
+                        {% endif %}
+                      <td>{{t.Academic_year}}</td>
+        <td><a class="btn btn-success " href="{% url 'admin_check_marks_view' t.id  %}">View</a></td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+<script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+      </script>
+
+<script>
+      function mylastname() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("subject");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+      </script>
+{% endblock main_content %}

@@ -1,0 +1,69 @@
+{% extends 'student_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+<section class="content" >
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Rules</h3>
+              </div>
+<br>
+
+
+
+<h2 class=" text-center text-dark"><b>Before you start the Exam, here are the rules</b></h2>
+
+        <div class="row">
+
+            <div class="card border-info mx-5 my-5">
+                <div class="card-body text-dark">
+
+                    <h4 class="card-title">Exam Details :</h4>
+                    <p class="card-text">
+                        </p><ul style="list-style:decimal;">
+                            <li>Exam Name : {{test.name}}</li>
+                            <li>Total Question : {{total_questions}}</li>
+                            <li>Total Marks : {{total_marks}}</li>
+                        </ul>
+                    <p></p>
+
+
+
+                    <h4 class="card-title">Rules :</h4>
+                    <p class="card-text">
+                        </p><ul style="list-style:decimal;">
+                            <li>All questions are multiple choice question.</li>
+                            <li><span class="text-danger">Only one choice is correct.</span></li>
+                            <li>Every question carry different marks
+                            </li>
+
+                            <li>Try to answer as quickly as you can.</li>
+                            <li>If you press refresh or go back to the previous page, there will be a new question for you. So Think before you refresh the page or else all the questions will be displayed in other order.</li>
+                            <li>Questions are displayed randomly for every user.</li>
+                            <li>You will be told your marks immediately when you submit the answer.</li>
+                        </ul>
+                    <p></p>
+                    <a href="{% url 'start-exam' test.id  %}"  class="btn btn-primary btn-block">Let's Start</a>
+                </div>
+                <div class="card-footer text-dark text-center"><h4><b>Best Of Luck!!</b></h4></div>
+            </div>
+        </div>
+
+    </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

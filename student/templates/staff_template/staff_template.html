@@ -1,0 +1,90 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-warning">
+                      <div class="inner">
+                          <h3>{{ test_count }}</h3>
+
+                          <p>Total Test</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-eye-dropper"></i>
+                      </div>
+                      <a href="{% url 'staff_manage_test' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-maroon">
+                      <div class="inner">
+                          <h3>{{ question_count }}</h3>
+
+                          <p>Total Questions</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fa fa-question-circle"></i>
+                      </div>
+                      <a href="{% url 'staff_manage_question' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-info">
+                      <div class="inner">
+                          <h3>{{ student_count }}</h3>
+
+                          <p>Total Students</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-book-reader"></i>
+                      </div>
+                      <a href="{% url 'staff_manage_student' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-success">
+                      <div class="inner">
+                          <h3>{{ staff_count }}</h3>
+
+                          <p>Total Staffs</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-user"></i>
+                      </div>
+                      <a href="{% url 'view_staff' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-purple">
+                      <div class="inner">
+                          <h3>{{ course_count }}</h3>
+
+                          <p>Total Courses</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-book-open"></i>
+                      </div>
+                      <a href="{% url 'view_course' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+               <div class="col-lg-3 col-6">
+                  <div class="small-box bg-primary">
+                      <div class="inner">
+                          <h3>{{ subject_count }}</h3>
+
+                          <p>Total Subjects</p>
+                      </div>
+                      <div class="icon">
+                          <i class="fas fa-book"></i>
+                      </div>
+                      <a href="{% url 'view_subject' %}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i> </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

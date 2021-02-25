@@ -1,0 +1,68 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+         <div class="row">
+          <form method="get">
+            {% csrf_token %}
+
+                   <table>
+                <tr>
+                    <td>
+                  {{myFilter.form}}
+                    </td>
+                    </tr>
+             </table>
+            <button class="btn btn-primary" action="/manage_subject" type="submit">
+              Search
+            </button>
+
+                </form>
+        </div>
+
+
+
+           <div class="row my-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Subject Details</h3>
+              </div>
+              </div>
+
+
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Sr.No</th>
+                      <th>Subject Name</th>
+                      <th>Course Name</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for subject in subjects %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ subject.subject_name }}</td>
+                      <td>{{ subject.course_id.course_name }}</td>
+                </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

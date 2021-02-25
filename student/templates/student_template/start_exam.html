@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <!-- Main content -->
+   <style>
+        .unselectable{
+                -webkit-user-select:none;
+                -webkit-touch-callout:none;
+                -moz-user-select:none;
+                -ms-user-select:none;
+                color:#003B74
+            }
+body{
+    background-color:D9D9D9;
+
+}
+
+    </style>
+    </head>
+<body>
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                  <h3 class="card-title" style="text-align:center; color:#003B74"><b>All The Best!!</b></h3>
+              </div>
+<br><br>
+
+
+  <form class="form" id="quiz" autocomplete="off"  action="/calculate_marks_view" method="POST">
+    {% csrf_token %}
+      <h1 style="text-align: center;"><b>{{test.course_id.course_name}}: {{test.subject_id.subject_name}}</b></h1>
+<div class="card border-info mx-5 my-4">
+
+
+			<div class="alert alert-success" role="alert"><center>Time left : <span id="timer"></span></center></div>
+<div class="unselectable">
+    {% for q in questions%}
+
+    <h3 class="card-body text-dark">{{ forloop.counter }}. {{q.question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Marks {{q.marks}}]</h3>
+
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<input type="hidden" id="secs" value="{{ secs }}">
+            <input type="hidden" id="mins" value="{{ mins }}">
+      {% if q.question_type == "MCQ" %}
+      <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id="{{q.Option1}}" value="Option1">
+            <label class="radio" for="Option1">
+              {{q.Option1}}
+            </label>
+          </div>
+
+          <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id="{{q.Option2}}" value="Option2">
+            <label class="radio" for="Option2">
+              {{q.Option2}}
+            </label>
+          </div>
+
+
+          <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id="{{q.Option3}}" value="Option3">
+            <label class="radio" for="Option3">
+              {{q.Option3}}
+            </label>
+          </div>
+
+
+          <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id="{{q.Option4}}" value="Option4">
+            <label class="radio" for="Option4">
+              {{q.Option4}}
+            </label>
+          </div>
+
+      {% else %}
+      <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id=" {{q.Option1}} " value="Option1">
+            <label class="radio" for="Option1">
+              {{q.Option1}}
+            </label>
+          </div>
+
+          <div class="radio mx-4">
+            <input class="radio" type="radio" name="{{ q.id }}" id=" {{q.Option2}} " value="Option2">
+            <label class="radio" for="Option2">
+              {{q.Option2}}
+            </label>
+          </div>
+{% endif %}
+
+        {% endfor %}<br><div class="card-footer">
+        <input class="btn btn-primary btn-block"   type="submit" value="Submit">
+</div></div></div></form>
+  </div>
+
+
+
+          </div>
+          </div>
+              </div>
+
+      </div>
+    </section>
+ <!-- /.content -->
+<script type="text/javascript">
+window.onload = function begin(){
+document.getElementById('timer').innerHTML =
+  30 + ":" + 00;
+startTimer();
+}
+
+function startTimer() {
+  var presentTime = document.getElementById('timer').innerHTML;
+  var timeArray = presentTime.split(/[:]+/);
+  var m = timeArray[0];
+  var s = checkSecond((timeArray[1] - 1));
+  if(s==59){m=m-1}
+  if(m<0){
+    document.getElementById('quiz').submit();
+  }
+  document.getElementById('timer').innerHTML =
+    m + ":" + s;
+  setTimeout(startTimer, 1000);
+}
+
+function checkSecond(sec) {
+  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+  if (sec < 0) {sec = "59"};
+  return sec;
+}
+</script>
+
+
+
+
+ <!-- /.content -->
+
+<br><br><br><br><br><br>
+</body>
+</html>

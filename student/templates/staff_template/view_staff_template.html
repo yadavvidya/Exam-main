@@ -1,0 +1,73 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+<div class="row">
+          <form method="get">
+                   <table>
+                <tr>
+                    <td>
+                  {{myFilter.form}}
+                    </td>
+                    </tr>
+             </table>
+
+            <button class="btn btn-primary" action="/manage_staff" type="submit">
+              Search
+            </button>
+              </form>
+</div>
+
+           <div class="row my-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Staff Details</h3>
+              </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Sr.No</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>User Name</th>
+                         <th>Staff ID</th>
+                      <th>Email</th>
+                      <th>Address</th>
+                      <th>Last Login</th>
+                      <th>Date Joined</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for staff in staffs %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ staff.admin.first_name }}</td>
+                      <td>{{ staff.admin.last_name }}</td>
+                      <td>{{ staff.admin.username }}</td>
+                         <td>{{ staff.staff_id }}</td>
+                      <td>{{ staff.admin.email }}</td>
+                      <td>{{ staff.address }}</td>
+                      <td>{{ staff.admin.last_login }}</td>
+                      <td>{{ staff.admin.date_joined }}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

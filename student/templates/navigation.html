@@ -1,0 +1,55 @@
+
+<html>
+<head>
+    {% load static %}
+
+    <title>Online Examination System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!--Font-awesome link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 mt-4">
+                        <a class="link" href="{% url 'index' %}">
+                            <img src="{% static 'dist/img/exam.png' %}" style="width : 150px; height : 100px">
+                            <span>Home Page</span>
+                        </a>
+                    </div>
+
+
+                    <div class="col-sm-6 mt-5 ">
+
+                        <h1 class="head">Online Examination System</h1>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+</body>
+
+</html>

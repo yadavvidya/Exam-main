@@ -1,0 +1,64 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+           <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Exam Details</h3>
+              </div>
+                </div>
+
+
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Course</th>
+                      <th>Subject</th>
+                      <th>Exam</th>
+                      <th>Total Question</th>
+                      <th>Total Marks</th>
+                      <th>Due</th>
+                      <th>Status</th>
+                      <th>View Question</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for t in test %}
+                <tr>
+                  <td>{{t.course_id.course_name}}</td>
+                  <td>{{t.subject_id.subject_name}}</td>
+                  <td> {{t.name}}</td>
+                  <td>{{t.question_number}}</td>
+                  <td>{{t.total_marks}}</td>
+                  <td>{{t.due}}</td>
+                  {% if t.complete == True %}
+                        <td style><i><span style="color:blue">Test Not Started </span> / <span style="color:red">Test Ended</span></i></td>
+                        {% else %}
+                        <td style="color:green">Test Started</td>
+                        {% endif %}
+
+                  <td><a class="btn btn-success " href="{% url 'view_question_view' t.id  %}">View</a></td>
+
+                </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

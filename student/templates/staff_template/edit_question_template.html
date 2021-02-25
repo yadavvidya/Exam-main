@@ -1,0 +1,112 @@
+{% extends 'staff_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Edit Question | Question ID : {{ questions.id }}</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" action="/staff_edit_question_save" method="post" autocomplete="off">
+                  {% csrf_token %}
+                <div class="card-body">
+                    <div class="form-group">
+                      {% if messages %}
+                        {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% if message.tags == 'success' %}
+                        <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                      {% endif %}
+                    </div>
+                  <div class="form-group">
+                     <div class="form-group">
+                    <label>Test </label>
+                    <select class="form-control" name="test">
+                        {% for test in test %}
+                              <option value="{{ test.id }}" {% if test.id == test.Test_name.id %} selected {% endif %}>{{ test.name }}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+
+                     <div class="form-group">
+                    <label> Question  </label>
+                    <input type="text" class="form-control" name="question" placeholder="Enter  Questions" value="{{ questions.question }}" >
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+
+                         <div class="form-group">
+                    <label>Enter Question Type</label>
+                   <select  class="form-control"  name="question_type">
+                    <option {% if questions.question_type == "MCQ" %} selected {% endif %}>MCQ</option>
+                     <option {% if questions.question_type == "True_False" %} selected {% endif %}>True or False</option>
+                   </select>
+
+                  </div>
+
+
+                      <div class="form-group">
+                           <label>Marks</label>
+                    <input type="number" class="form-control" name="marks" placeholder="Enter Marks for this question" value="{{ questions.marks }}" >
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+
+                     <div class="form-group">
+                    <label>Option 1 </label>
+                    <input type="text" class="form-control" name="option1" placeholder="Enter Answer Option" value="{{ questions.Option1 }}">
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+                        <div class="form-group">
+                    <label>Option 2 </label>
+                    <input type="text" class="form-control" name="option2" placeholder="Enter Answer Option" value="{{ questions.Option2 }}">
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+                        <div class="form-group">
+                    <label>Option 3 </label>
+                    <input type="text" class="form-control" name="option3" placeholder="Enter Answer Option" value="{{ questions.Option3 }}">
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+                        <div class="form-group">
+                    <label>Option 4 </label>
+                    <input type="text" class="form-control" name="option4" placeholder="Enter Answer Option" value="{{ questions.Option4 }}">
+                    <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+                     </div>
+                       <div class="form-group">
+                    <label>Correct Option</label>
+                   <select  class="form-control"  name="answer">
+                       <option value="">------</option>
+                    <option value="Option1">Option 1</option>
+                     <option value="Option2">Option 2</option>
+                       <option value="Option3">Option 3</option>
+                       <option value="Option4">Option 4</option>
+                    </select>
+                           <input type="hidden"  name="question_id"  value="{{ questions.id }}">
+
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-block">Edit Question</button>
+                </div>
+                </div></form>
+            </div>
+            <!-- /.card -->
+
+
+
+          </div>
+          </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

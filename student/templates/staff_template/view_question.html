@@ -1,0 +1,86 @@
+{% extends 'staff_template/base_template.html' %}
+{% block page_title %}
+View Questions
+{% endblock page_title %}
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+         <div class="row">
+          <form method="get">
+            {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                  {{myFilter.form}}
+                            </td>
+                            </tr>
+                        </table>
+            <button class="btn btn-primary" action="/staff_view_question_view" type="submit">
+              Search
+            </button>
+
+                </form>
+        </div>
+
+
+         <div class="row my-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Question Details</h3>
+              </div>
+              </div>
+
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                  <th>Question</th>
+                  <th>Question Type</th>
+                  <th>Marks</th>
+                  <th>Option 1</th>
+                  <th>Option 2</th>
+                  <th>Option 3</th>
+                  <th>Option 4</th>
+                  <th>Correct Option</th>
+                  <th>Edit Question</th>
+                  <th>Delete Question</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for c in questions %}
+                  <tr>
+
+                      <td>{{ forloop.counter }}</td>
+                    <td> {{c.question}}</td>
+                      <td>{{ c.question_type }}</td>
+                    <td>{{c.marks}}</td>
+                    <td>{{c.Option1}}</td>
+                    <td>{{c.Option2}}</td>
+                    <td>{{c.Option3}}</td>
+                    <td>{{c.Option4}}</td>
+                    <td>{{c.answer}}</td>
+                    <td><a class="btn btn-success" href="{% url 'staff_edit_question' c.id %}">Edit</a> </td>
+                    <td><a class="btn btn-danger" href="{% url 'staff_delete_question_view' c.id  %}">Delete</a></td>
+
+                  </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

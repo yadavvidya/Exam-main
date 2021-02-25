@@ -1,0 +1,61 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+
+
+
+         <div class="row">
+          <form method="get">
+            {% csrf_token %}
+
+                  {{myFilter.form}}
+            <button class="btn btn-primary" action="/manage_course" type="submit">
+              Search
+            </button>
+
+                </form>
+        </div>
+
+
+           <div class="row my-3">
+          <div class="col-12">
+          <div class="card">
+                <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">All Course Details</h3>
+              </div>
+                </div>
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>Sr.No</th>
+                      <th>Course Name</th>
+                      <th>Edit</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for course in courses %}
+                    <tr>
+                      <td>{{ forloop.counter }}</td>
+                      <td>{{ course.course_name }}</td>
+                      <td><a href="/edit_course/{{ course.id }}" class="btn btn-success">Edit</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+{% endblock main_content %}

@@ -1,0 +1,82 @@
+{% load static %}
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#25454D">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/student.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="{% url 'student_profile' %}" class="d-block">{{ user.first_name }} {{ user.last_name }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            {% url 'student_home' as student_home %}
+            <a href="{{ student_home }}" class="nav-link {% if request.path == student_home %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Home
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            {% url 'student_exam_view' as student_exam_view %}
+            <a href="{% url 'student_exam_view' %}" class="nav-link {% if request.path == student_exam_view %} active {% endif %}">
+          <i class="nav-icon fas fa-th"></i>
+              <p>
+             Take Exam
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+             {% url 'view_notice' as view_notice %}
+          <a href="{% url 'view_notice' %}" class="nav-link {% if request.path == view_notice %} active {% endif %}">
+
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              View Notice
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+             {% url 'student_marks_view' as student_marks_view %}
+           <a href="{% url 'student_marks_view' %}" class="nav-link {% if request.path == student_marks_view %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+              View Result
+              </p>
+            </a>
+          </li>
+              <li class="nav-item">
+              {% url 'student_view_subject' as student_view_subject %}
+            <a href="{% url 'student_view_subject' %}" class="nav-link {% if request.path == student_view_subject %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               View Subjects
+              </p>
+            </a>
+          </li>
+
+            <li class="nav-item">
+              {% url 'student_profile' as student_profile %}
+            <a href="{% url 'student_profile' %}" class="nav-link {% if request.path == student_profile %} active {% endif %}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Edit Profile
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
