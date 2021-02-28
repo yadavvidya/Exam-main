@@ -1,5 +1,7 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
  <!-- Main content -->
    <style>
@@ -14,8 +16,9 @@ body{
     background-color:D9D9D9;
 
 }
-
     </style>
+
+    <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css" %}">
     </head>
 <body>
     <section class="content">
@@ -23,24 +26,20 @@ body{
           <div class="row">
               <div class="col-md-12">
             <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                  <h3 class="card-title" style="text-align:center; color:#003B74"><b>All The Best!!</b></h3>
-              </div>
-<br><br>
 
-
-  <form class="form" id="quiz" autocomplete="off"  action="/calculate_marks_view" method="POST">
+  <form class="form" id="examform"  autocomplete="off"  action="/calculate_marks_view" method="POST">
     {% csrf_token %}
-      <h1 style="text-align: center;"><b>{{test.course_id.course_name}}: {{test.subject_id.subject_name}}</b></h1>
+      <h2 style="text-align: center;"><b>{{test.course_id.course_name}}: {{test.subject_id.subject_name}}</b></h2>
+      <h3 style="text-align:center">{{test.name}}</h3>
 <div class="card border-info mx-5 my-4">
+<h4 style="text-align:center; background-color:red">
+            <a>Time left : <a id="dmin">{{ min }}</a> mins <a id="dsec">{{ sec }}</a> seconds</a>
+        </h4>
 
-
-			<div class="alert alert-success" role="alert"><center>Time left : <span id="timer"></span></center></div>
 <div class="unselectable">
     {% for q in questions%}
 
-    <h3 class="card-body text-dark">{{ forloop.counter }}. {{q.question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Marks {{q.marks}}]</h3>
+    <h5 class="card-body text-dark">{{ forloop.counter }}. {{q.question}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Marks {{q.marks}}]</h5>
 
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 <input type="hidden" id="secs" value="{{ secs }}">
@@ -101,40 +100,39 @@ body{
 
           </div>
           </div>
-              </div>
-
-      </div>
     </section>
  <!-- /.content -->
-<script type="text/javascript">
-window.onload = function begin(){
-document.getElementById('timer').innerHTML =
-  30 + ":" + 00;
-startTimer();
-}
 
-function startTimer() {
-  var presentTime = document.getElementById('timer').innerHTML;
-  var timeArray = presentTime.split(/[:]+/);
-  var m = timeArray[0];
-  var s = checkSecond((timeArray[1] - 1));
-  if(s==59){m=m-1}
-  if(m<0){
-    document.getElementById('quiz').submit();
+
+<script>
+    window.onbeforeunload = function(){
+    return "Your work will be lost";
+    }
+    var milisec = 0;
+        var seconds = document.getElementById("secs").value;
+        var minutes = document.getElementById("mins").value
+        function display() {
+            if (minutes == 0 && seconds == 0) {
+                window.onbeforeunload = undefined
+                document.getElementById("examform").submit();
+            }
+            if (seconds == 0) {
+                minutes = minutes - 1
+                seconds = 60
+            }
+            seconds -= 1
+            document.getElementById("dsec").innerHTML = seconds
+            document.getElementById("dmin").innerHTML = minutes
+            setTimeout("display()", 1000)
+        }
+        display()
+if (performance.navigation.type == 1) {
+    location.href="{%url 'logout' %}";
+
+  } else {
+    console.log( "Not reloaded");
   }
-  document.getElementById('timer').innerHTML =
-    m + ":" + s;
-  setTimeout(startTimer, 1000);
-}
-
-function checkSecond(sec) {
-  if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-  if (sec < 0) {sec = "59"};
-  return sec;
-}
 </script>
-
-
 
 
  <!-- /.content -->

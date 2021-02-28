@@ -93,6 +93,8 @@ def staff_add_test_save(request):
             Academic_year=form.cleaned_data["Academic_year"]
             due = form.cleaned_data[ "due" ]
             complete = form.cleaned_data[ "complete" ]
+            start_time = form.cleaned_data[ "start_time" ]
+            end_time = form.cleaned_data[ "end_time" ]
             try:
                 test = Test()
                 test.name = name
@@ -105,6 +107,8 @@ def staff_add_test_save(request):
                 test.Academic_year=Academic_year
                 test.due = due
                 test.complete = complete
+                test.start_time = start_time
+                test.end_time = end_time
                 test.save()
                 messages.success(request, "Successfully Added Test")
                 return HttpResponseRedirect(reverse("staff_add_test"))
@@ -133,6 +137,8 @@ def staff_edit_test(request,test_id):
     form.fields['Academic_year'].initial = test.Academic_year
     form.fields[ 'due' ].initial = test.due
     form.fields[ 'complete' ].initial = test.complete
+    form.fields[ 'start_time' ].initial = test.start_time
+    form.fields[ 'end_time' ].initial = test.end_time
     return render(request,"staff_template/edit_test_template.html",{"test":test,"form":form,"id":test_id})
 
 def staff_edit_test_save(request):
@@ -150,6 +156,8 @@ def staff_edit_test_save(request):
             Academic_year=form.cleaned_data["Academic_year"]
             due = form.cleaned_data[ "due" ]
             complete = form.cleaned_data[ 'complete' ]
+            start_time = form.cleaned_data[ "start_time" ]
+            end_time = form.cleaned_data[ "end_time" ]
             try:
                 test = Test.objects.get(id=test_id)
                 course = Courses.objects.get(id=course_id)
@@ -162,6 +170,8 @@ def staff_edit_test_save(request):
                 test.Academic_year=Academic_year
                 test.due = due
                 test.complete = complete
+                test.start_time = start_time
+                test.end_time = end_time
                 test.save()
                 del request.session[ 'test_id' ]
                 messages.success(request,"Successfully Edited Test")

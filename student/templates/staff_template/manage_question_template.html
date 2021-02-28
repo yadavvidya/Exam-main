@@ -65,7 +65,7 @@
                       <td>{{ questions.Option4 }}</td>
                       <td>{{ questions.answer }}</td>
                   <td><a href="/staff_edit_question/{{ questions.id }}" class="btn btn-success">Edit</a></td>
-                <td><a href="{% url 'staff_delete_question_view' questions.id %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'staff_delete_question_view' questions.id %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
                     </tr>
                   {% endfor %}
                   </tbody>

@@ -15,9 +15,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static "dist/css/adminlte.min.css" %}">
 </head>
-<body class="hold-transition login-page" style="background-color:#464B59">
+<body class="hold-transition login-page" style="background-color:#ECEBE5">
 <div class="login-logo">
-      <h2 style="color:#D9B7B0"><b>Online Examination System</b></h2>
+      <h2 style="font-family:Times New Roman"><b>Online Examination System</b></h2>
   </div>
 
 <div class="login-box">
@@ -27,7 +27,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <h2 style="color:#464B59"><p class="login-box-msg"><b>Login</b></p></h2>
+      <h2 style="font-family:Times New Roman"><p class="login-box-msg"><b>Login</b></p></h2>
       <form action="doLogin" method="post">
         {% csrf_token %}
         <div class="input-group mb-3">

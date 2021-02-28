@@ -7,6 +7,9 @@ from student.models import Courses, Subjects, Test
 class DateInput(forms.DateInput):
     input_type = "date"
 
+class DateTimeInput(forms.TimeInput):
+    input_type = "time"
+
 class AddStudentForm(forms.Form):
     email=forms.EmailField(label="Email",widget=forms.EmailInput(attrs={"class":"form-control"}))
     password=forms.CharField(label="Password",max_length=50,widget=forms.PasswordInput(attrs={"class":"form-control"}))
@@ -78,9 +81,12 @@ class TestForm(forms.ModelForm):
     total_marks = forms.IntegerField(label="Total Marks",widget=forms.NumberInput(attrs={"class":"form-control"}))
     due =forms.DateField(label="Due",widget=DateInput(attrs={"class":"form-control"}))
     Academic_year = forms.DateField(label="Academic Start Date",widget=DateInput(attrs={"class":"form-control"}))
+    start_time = forms.TimeField(label="Exam Start Time",widget=DateTimeInput(attrs={"class":"form-control"}))
+    end_time = forms.TimeField(label="Exam End Time",widget=DateTimeInput(attrs={"class":"form-control"}))
+
     class Meta:
         model=models.Test
-        fields=['name','question_number','total_marks','Academic_year','due','complete']
+        fields=['name','question_number','total_marks','Academic_year','due','complete','start_time','end_time']
 
 class EditTestForm(forms.ModelForm):
     courses = Courses.objects.all()
@@ -101,6 +107,8 @@ class EditTestForm(forms.ModelForm):
     total_marks = forms.IntegerField(label="Total Marks", widget=forms.NumberInput(attrs={"class": "form-control"}))
     due =forms.DateField(label="Due",widget=DateInput(attrs={"class":"form-control"}))
     Academic_year = forms.DateField(label="Academic Start Date",widget=DateInput(attrs={"class":"form-control"}))
+    start_time = forms.TimeField(label="Exam Start Time", widget=DateTimeInput(attrs={"class": "form-control"}))
+    end_time = forms.TimeField(label="Exam End Time", widget=DateTimeInput(attrs={"class": "form-control"}))
     class Meta:
         model=models.Test
-        fields=['name','question_number','total_marks','Academic_year','due','complete']
+        fields=['name','question_number','total_marks','Academic_year','due','complete','start_time','end_time']

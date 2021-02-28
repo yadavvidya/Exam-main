@@ -145,7 +145,7 @@ AUTHENTICATION_BACKEND = ["student.EmailBackEnd.EmailBackEnd"]
 
 EMAIL_HOST="smtp.gmail.com"
 EMAIl_PORT=587
-EMAIL_HOST_USER="your@gmail.com"
-EMAIL_HOST_PASSWORD="password"
+EMAIL_HOST_USER="yourgmail@gmail.com"
+EMAIL_HOST_PASSWORD="*****"
 EMAIL_USE_TLS=True
 DEFAULT_FROM_EMAIL="Online Examination System <yourgmail@gmail.com>"

@@ -19,7 +19,7 @@
 
           <th>Exam Name</th>
                          <th>Subject</th>
-            <th>Due</th>
+
           <th>Take Exam</th>
         </tr>
                   </thead>
@@ -28,8 +28,8 @@
       <tr>
 
         <td> {{t.name}}</td>
-          <td> {{ t.course_id.course_name }}</td>
-          <td>{{t.due}}</td>
+          <td> {{ t.subject_id.subject_name }}</td>
+
         {% if t.complete == True %}
           <td><span style="color:red">Exam Done</span> / <span style="color:green">Exam Not Started</span></h5></td>
           {% else %}

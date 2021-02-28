@@ -1,4 +1,5 @@
 import random
+from datetime import datetime, date
 
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -67,19 +68,33 @@ def take_exam_view(request, pk):
     test = Test.objects.get(id=pk)
     total_questions = Question.objects.all().filter(Test_name=test).count()
     questions = Question.objects.all().filter(Test_name=test)
+    duration = datetime.combine(date.today(),test.end_time)-datetime.combine(date.today(),test.start_time)
 
     total_marks = 0
     for q in questions:
         total_marks += q.marks
-    return render(request, 'student_template/take_exam.html',{'test': test,'total_questions': total_questions, 'total_marks': total_marks})
+    return render(request, 'student_template/take_exam.html',{'test': test,'total_questions': total_questions, 'total_marks': total_marks, 'duration':duration})
+
+def convert(seconds):
+    min, sec = divmod(seconds, 60)
+    hour, min = divmod(min, 60)
+    min += hour*60
+    return "%02d:%02d" % (min, sec)
+
+
 
 def start_exam_view(request,pk):
     test = Test.objects.get(id=pk)
     questions = list(Question.objects.all().filter(Test_name=test))
     random.shuffle(questions)
+    time_delta = datetime.combine(date.today(), test.end_time) - datetime.combine(date.today(), test.start_time)
+    time = convert(time_delta.seconds)
+    time = time.split(":")
+    mins = time[ 0 ]
+    secs = time[ 1 ]
     if request.method == 'POST':
         pass
-    response = render(request, 'student_template/start_exam.html', {'test': test, 'questions': questions})
+    response = render(request, 'student_template/start_exam.html', {'test': test, 'questions': questions,"secs":secs,"mins":mins})
     response.set_cookie('test_id', test.id)
     return response
 

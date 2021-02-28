@@ -72,6 +72,8 @@ class Test(models.Model):
     complete = models.BooleanField(default=False)
     due = models.DateField(blank=True, null=True)
     Academic_year = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     objects = models.Manager()
