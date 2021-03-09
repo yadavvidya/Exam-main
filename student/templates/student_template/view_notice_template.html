@@ -2,9 +2,17 @@
 
 {% block main_content %}
     <!-- Main content -->
+
     <section class="content">
        <div class="container-fluid">
-          <div class="row">
+           <div class="row">
+     <label for="id_admin"> Notice : </label>
+     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Notice" title="Type in a notice">
+
+</div>
+
+
+          <div class="row my-3">
               <div class="col-md-12">
             <!-- general form elements -->
             <div class="card card-primary">
@@ -20,7 +28,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover text-nowrap" id="myTable">
                   <thead>
                     <tr>
                       <th>Sr.No</th>
@@ -44,5 +52,27 @@
         </div>
       </div>
     </section>
+
+
+<script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[1];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+      </script>
     <!-- /.content -->
 {% endblock main_content %}
